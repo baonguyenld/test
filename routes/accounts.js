@@ -1,13 +1,13 @@
 const express = require("express");
 const route = express.Router();
 const AccountModel = require("../models/Accounts")
-route.get("/login",(req,res) =>{
-    const userName = req.body.u;
-    const passWord = req.body.p;
-    AccountModel.findOne({
-        userName:userName,
-        password:passWord
-    })
+route.post("/login",(req,res) =>{
+    AccountModel.findOne(
+        {
+        username:req.body.u,
+        password:req.body.p
+    }
+    )
     .then( data =>{
         if(data){ 
             return res.json(true)
